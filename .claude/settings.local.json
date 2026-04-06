@@ -3,7 +3,27 @@
     "allow": [
       "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\(''mcpServers'', {}\\), indent=2, ensure_ascii=False\\)\\)\")",
       "Bash(curl:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(pip3 install notebooklm-mcp-cli 2>&1 || python3 -m pip install notebooklm-mcp-cli 2>&1)",
+      "Bash(curl -LsSf https://astral.sh/uv/install.sh | sh 2>&1)",
+      "Bash(source /root/.local/bin/env && uv tool install notebooklm-mcp-cli 2>&1)",
+      "Bash(source /root/.local/bin/env && nlm setup add claude-code 2>&1)",
+      "mcp__notebooklm-mcp__notebook_list",
+      "Bash(nlm login 2>&1)",
+      "Read(//storage/emulated/0/Download/**)",
+      "Read(//sdcard/Download/**)",
+      "Bash(source /root/.nlm_cookies_env && nlm login --check 2>&1)",
+      "Bash(source /root/.nlm_cookies_env && nlm login --manual --file /storage/emulated/0/Download/ntbllm_ck.txt 2>&1)",
+      "Bash(nlm login --check 2>&1)",
+      "Bash(python3 -c \"\nimport re, json\n\nwith open\\('/storage/emulated/0/Download/ntbllm_ck.txt'\\) as f:\n    content = f.read\\(\\)\n\nprint\\(repr\\(content[:200]\\)\\)\n\")",
+      "Bash(python3 -c \"\nimport re, json\n\nwith open\\('/storage/emulated/0/Download/ntbllm_ck.txt'\\) as f:\n    content = f.read\\(\\)\n\ncookies = {}\nfor line in content.strip\\(\\).split\\('\\\\n'\\):\n    line = re.sub\\(r'^\\\\s*\\\\d+→', '', line\\).strip\\(\\)\n    if ' = ' in line:\n        key, _, val = line.partition\\(' = '\\)\n        cookies[key.strip\\(\\)] = val.strip\\(\\)\n\nwith open\\('/tmp/nlm_cookies.json', 'w'\\) as f:\n    json.dump\\(cookies, f, indent=2\\)\n\nprint\\('쿠키 키:', list\\(cookies.keys\\(\\)\\)\\)\n\" && nlm login --manual --file /tmp/nlm_cookies.json 2>&1)",
+      "Bash(nlm notebook list 2>&1)",
+      "mcp__notebooklm-mcp__refresh_auth",
+      "Read(//root/.notebooklm-mcp-cli/**)",
+      "Bash(python3 -c \"\nimport re, json\n\nwith open\\('/storage/emulated/0/Download/ntbllm_ck.txt'\\) as f:\n    content = f.read\\(\\)\n\nprint\\(repr\\(content[:300]\\)\\)\n\")",
+      "Bash(python3 -c \"\nimport re, json\n\nwith open\\('/storage/emulated/0/Download/ntbllm_ck.txt'\\) as f:\n    content = f.read\\(\\)\n\ncookies = {}\nfor line in content.strip\\(\\).split\\('\\\\n'\\):\n    line = re.sub\\(r'^\\\\s*\\\\d+→', '', line\\).strip\\(\\)\n    if ' = ' in line:\n        key, _, val = line.partition\\(' = '\\)\n        cookies[key.strip\\(\\)] = val.strip\\(\\)\n\nwith open\\('/tmp/nlm_cookies.json', 'w'\\) as f:\n    json.dump\\(cookies, f, indent=2\\)\n\nprint\\('쿠키 수:', len\\(cookies\\)\\)\nprint\\('키 목록:', list\\(cookies.keys\\(\\)\\)\\)\n\" && nlm login --manual --file /tmp/nlm_cookies.json --force 2>&1)",
+      "Bash(cat ~/.notebooklm-mcp-cli/profiles/default/cookies.json 2>/dev/null | python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(list\\(d.keys\\(\\)\\)\\)\")"
     ]
   }
 }
